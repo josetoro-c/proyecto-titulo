@@ -1,1 +1,2 @@
-# proyecto-titulo-Ecommerce-"LP-MIX"
+# Ecommerce-proyecto-"LP-MIX"
+
