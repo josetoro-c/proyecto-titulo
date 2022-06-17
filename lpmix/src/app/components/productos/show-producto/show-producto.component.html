@@ -1,0 +1,213 @@
+<app-nav></app-nav>
+
+<main class="cs-page-wrapper">
+    <nav class="bg-secondary mb-3" aria-label="breadcrumb">
+        <div class="container">
+          <ol class="breadcrumb breadcrumb-alt mb-0">
+            <li class="breadcrumb-item">
+              <a [routerLink]="['/']"><i class="cxi-home"></i></a>
+            </li>
+            <li class="breadcrumb-item">
+              <a *ngIf="producto.categoria" [routerLink]="['/productos/categoria/',producto.categoria.toLowerCase()]">{{producto.categoria}}</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">{{producto.titulo}}</li>
+          </ol>
+        </div>
+      </nav>
+
+      <section class="container d-md-flex align-items-center justify-content-between py-3 py-md-4 mb-3">
+        <h1 class="mb-2 mb-md-0">{{producto.titulo}}</h1>
+        <span class="text-muted" *ngIf="producto._id" ><strong>Art. No.</strong>{{producto._id.toUpperCase()}}</span>
+      </section>
+
+
+      <!-- Single product -->
+      <section class="container py-md-6 py-5 mb-2">
+        <div class="row">
+          <div class="col-md-6 mb-md-0 mb-4">
+
+            <!-- Product gallery -->
+            <div class="cs-carousel cs-gallery cs-product-gallery mx-auto" style="max-width: 570px;">
+              <div class="cs-carousel-inner" data-carousel-options=''>
+
+                <!-- Product gallery item -->
+                <a class="cs-gallery-item" *ngFor="let item of producto.galeria " data-sub-html='<h6 class="text-light">Gallery image caption #1</h6>'>
+                  <img class="rounded" src="https://createx.createx.studio/assets/img/ecommerce/shop/single/01.jpg" alt="Carousel image">
+                  <span class="cs-gallery-caption">Gallery image caption #1</span>
+                </a>
+              </div>
+
+              <!-- Product gallery thumbnails -->
+              <div class="cs-thumbnails" id="cs-thumbnails">
+                <button type="button" data-nav="0">
+                  <img src="https://createx.createx.studio/assets/img/ecommerce/shop/single/01.jpg" alt="Thumbnail">
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 pl-xl-5">
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+
+              <!-- Price -->
+              <div class="d-flex align-items-center mb-sm-0 mb-4">
+                <span class="h3 d-inline-block mb-0 text-danger">${{producto.precio}}</span>
+                <del class="d-inline-block ml-2 pl-1 font-size-lg text-muted">$31.00</del>
+                <span class="ml-4 p-2 badge badge-danger font-size-base font-weight-bold">- 50%</span>
+              </div>
+
+
+            </div>
+
+            <!-- Ordering form -->
+            <form class="row">
+              <div class="col-12">
+
+              </div>
+              <div class="col-sm-8 order-sm-1 order-2">
+                <div class="form-group">
+                  <label for="size">{{producto.titulo_variedad}}</label>
+                  <select class="form-control custom-select" id="size">
+                    <option value="" selected disabled>Seleccionar</option>
+                    <option value="{{item.titulo}}" *ngFor="let item of producto.variedades">{{item.titulo}}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-sm-4 order-sm-2 order-1 text-sm-right">
+                <a href="#modal-sizing" data-toggle="modal" class="d-inline-block mt-sm-4 mb-sm-0 mb-4 pt-sm-3 font-weight-bold text-decoration-0 text-dark">
+                  <i class="mr-2"></i>
+                  
+                </a>
+              </div>
+              <div class="col-lg-2 col-4 order-lg-3 order-3">
+                <div class="form-group">
+                  <select class="form-control custom-select" id="select-input">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>5</option>
+                    <option>10</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 order-lg-4 order-4">
+                <button class="btn btn-block btn-primary">
+                  <i class="cxi-cart mr-2"></i>
+                  Añadir al carrito
+                </button>
+              </div>
+              <div class="col-lg-4 col-8 order-lg-5 order-2">
+                <button class="btn btn-block btn-outline-primary px-lg-4">
+                  <i class="cxi-heart mr-2"></i>
+                  Favourite
+                </button>
+              </div>
+            </form>
+
+            <!-- Terms -->
+            <!-- Accordion made of cards -->
+            <div class="accordion-alt mb-4" id="productTerms">
+
+              <!-- Card -->
+              <div class="card border-bottom">
+                <div class="card-header" id="delivery-card">
+                  <h6 class="accordion-heading">
+                    <a href="#delivery" class="collapsed" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="delivery">Delivery
+                      <span class="accordion-indicator"></span>
+                    </a>
+                  </h6>
+                </div>
+                <div class="collapse" id="delivery" aria-labelledby="delivery-card" data-parent="#productTerms">
+                  <div class="card-body">
+                    <p class="font-size-sm">
+                      Free standard shipping on orders <strong>over $35</strong> before tax, plus free returns.
+                    </p>
+
+                    <!-- Delivery table -->
+                    <div class="table-responsive px-md-3">
+                      <table class="table mb-0" style="min-width: 450px;">
+                        <thead class="font-size-xs text-uppercase text-muted">
+                          <tr>
+                            <th class="border-0 font-weight-normal">Type</th>
+                            <th class="border-0 font-weight-normal">How long</th>
+                            <th class="border-0 font-weight-normal">How much</th>
+                          </tr>
+                        </thead>
+                        <tbody class="font-size-sm">
+                          <tr>
+                            <th class="font-weight-normal">Standard delivery</th>
+                            <td>1-4 business days</td>
+                            <td>$4.50</td>
+                          </tr>
+                          <tr>
+                            <th class="font-weight-normal">Express delivery</th>
+                            <td>1 business day</td>
+                            <td>$10.00</td>
+                          </tr>
+                          <tr>
+                            <th class="font-weight-normal">Pick up in store</th>
+                            <td>1-3 business days</td>
+                            <td>Free</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Card -->
+              <div class="card border-bottom">
+                <div class="card-header" id="return-card">
+                  <h6 class="accordion-heading">
+                    <a class="collapsed" href="#return" role="button" data-toggle="collapse" aria-expanded="false" aria-controls="return">Return
+                      <span class="accordion-indicator"></span>
+                    </a>
+                  </h6>
+                </div>
+                <div class="collapse" id="return" aria-labelledby="return-card" data-parent="#productTerms">
+                  <p class="font-size-sm">
+                    You have <strong>60 days</strong> to return the item(s) using any of the following methods:
+                  </p>
+                  <ul class="mb-4 pl-3">
+                    <li>Free store return</li>
+                    <li>Free returns via USPS Dropoff Service</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Share -->
+            <div class="mb-5 text-nowrap">
+              <h6 class="d-inline-block align-middle mr-2 mb-0">Share:</h6>
+              <a href="#" class="social-btn sb-solid align-middle mr-2" data-toggle="tooltip" title="Facebook">
+                <i class="cxi-facebook"></i>
+              </a>
+              <a href="#" class="social-btn sb-solid align-middle mr-2" data-toggle="tooltip" title="Twitter">
+                <i class="cxi-twitter"></i>
+              </a>
+              <a href="#" class="social-btn sb-solid align-middle" data-toggle="tooltip" title="Pinterest">
+                <i class="cxi-pinterest"></i>
+              </a>
+            </div>
+
+            <!-- Payment -->
+            <div class="pb-3 text-nowrap" data-simplebar data-simplebar-auto-hide="false">
+              <a href="#" class="d-inline-block mb-3 mr-xl-4 mr-3">
+                <img src="../../assets/img/visa.jpg" alt="Visa" class="border rounded">
+              </a>
+              <a href="#" class="d-inline-block mb-3 mr-xl-4 mr-3">
+                <img src="../../assets/img/master-card.jpg" alt="Mastercard" class="border rounded">
+              </a>
+              <a href="#" class="d-inline-block mb-3">
+                <img src="../../assets/img/pay-pal.jpg" alt="PayPal" class="border rounded">
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+      
+</main>
+
+<app-footer></app-footer>
